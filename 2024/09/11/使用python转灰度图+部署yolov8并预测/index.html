@@ -413,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    552
+                    564
                 </div>
                 
 
@@ -449,7 +449,7 @@
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import cv2</span><br><span class="line"></span><br><span class="line"># 读取图片</span><br><span class="line">image = cv2.imread('C:/Users/jiasen/Desktop/python/fujian4.jpg')  # 请将'your_image.jpg'替换为你的图片文件路径</span><br><span class="line"></span><br><span class="line"># 转换为灰度图</span><br><span class="line">gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line"># 显示原始图片和灰度图</span><br><span class="line">cv2.imshow('Original Image', image)</span><br><span class="line">cv2.imshow('Gray Image', gray_image)</span><br><span class="line"></span><br><span class="line"># 保存灰度图</span><br><span class="line">cv2.imwrite('gray_image.jpg', gray_image)</span><br><span class="line"></span><br><span class="line"># 等待按键后关闭窗口</span><br><span class="line">cv2.waitKey(0)</span><br><span class="line">cv2.destroyAllWindows()</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
 <h3 id="三、yolov8的使用"><a href="#三、yolov8的使用" class="headerlink" title="三、yolov8的使用"></a>三、yolov8的使用</h3><p>从官网下载源代码：<a target="_blank" rel="noopener" href="https://github.com/ultralytics/ultralytics?tab=readme-ov-file%EF%BC%8C">https://github.com/ultralytics/ultralytics?tab=readme-ov-file，</a><br>解压到本地，并在vscode中进入此文件夹。<br><img src="/images/2c8c4edf9abb154927e4856280a1266.png"><br>在vscode终端中输入</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ultralytics</span><br></pre></td></tr></tbody></table></figure>
-<p>安装所需依赖。等待安装完毕。（因为网络因素可能一次不成功，也可能不能成功，多试几次。）<br>在vscode终端中输入yolo predict model=yolov8n.pt source=’path/to/your/video’ show=true，不出意外的话应该不会出意外。<br>等待将视频识别完毕就大功告成！</p>
+<p>安装所需依赖。等待安装完毕。（因为网络因素可能一次不成功，也可能不能成功，多试几次。）<br>在vscode终端中输入yolo predict model=yolov8n.pt source=’path/to/your/video’ show=true，不出意外的话应该不会出意外。<br>等待将视频识别完毕就大功告成！<br>识别后的视频在runs/detect目录下。</p>
 
                 
             </div>
