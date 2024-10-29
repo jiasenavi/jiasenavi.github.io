@@ -411,14 +411,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    145
+                    703
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -443,7 +443,16 @@
 <p>使用如下命令使用摄像头预测：</p>
 <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yolo predict model=yolov8n source=0 show=true</span><br></pre></td></tr></tbody></table></figure>
 <p>model=yolov8n 代表使用yolov8n模型，yolov8n为官方训练的较小的一个模型；<br>source=0 代表使用摄像头作为视频源，0可以切换为视频路径；<br>show=true 代表将识别结果实时显示出来。<br>识别完成后会将结果自动保存在’users/你的用户名/runs’文件夹下。</p>
-<h2 id="yolov8模型训练"><a href="#yolov8模型训练" class="headerlink" title="yolov8模型训练"></a>yolov8模型训练</h2>
+<h2 id="yolov8模型训练"><a href="#yolov8模型训练" class="headerlink" title="yolov8模型训练"></a>yolov8模型训练</h2><h3 id="yolov8数据集结构"><a href="#yolov8数据集结构" class="headerlink" title="yolov8数据集结构"></a>yolov8数据集结构</h3><p>这里只介绍yolov8能使用的一中数据集结构，有些其他数据集也能使用。<br>数据集目录结构如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">yolov8_dataset/</span><br><span class="line">│</span><br><span class="line">├── train/</span><br><span class="line">│   ├── images/</span><br><span class="line">│   │   ├── img1.jpg</span><br><span class="line">│   │   ├── img2.jpg</span><br><span class="line">│   │   └── ...</span><br><span class="line">│   │</span><br><span class="line">│   └── labels/</span><br><span class="line">│       ├── img1.txt</span><br><span class="line">│       ├── img2.txt</span><br><span class="line">│       └── ...</span><br><span class="line">│</span><br><span class="line">├── valid/</span><br><span class="line">│   ├── images/</span><br><span class="line">│   │   ├── img_a.jpg</span><br><span class="line">│   │   ├── img_b.jpg</span><br><span class="line">│   │   └── ...</span><br><span class="line">│   │</span><br><span class="line">│   └── labels/</span><br><span class="line">│       ├── img_a.txt</span><br><span class="line">│       ├── img_b.txt</span><br><span class="line">│       └── ...</span><br><span class="line">│</span><br><span class="line">├── test/</span><br><span class="line">│   ├── images/</span><br><span class="line">│   │   ├── img_x.jpg</span><br><span class="line">│   │   ├── img_y.jpg</span><br><span class="line">│   │   └── ...</span><br><span class="line">│   │</span><br><span class="line">│   └── labels/</span><br><span class="line">│       ├── img_x.txt</span><br><span class="line">│       ├── img_y.txt</span><br><span class="line">│       └── ...</span><br><span class="line">│</span><br><span class="line">└── dataset.yaml          # 包含数据集配置信息的YAML文件</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>train 用于训练的照片和数据；<br>valid 用于训练过程中检测模型的数据集，用以在训练过程中评估模型的能力，可以没有此数据集，这样的话就无法实时显示模型的评估数据；<br>test 用于训练结束后整体评估模型的能力，可以没有此数据集，这样的话最终无法生成整体评估数据；<br>dateset.yaml 用于记录数据集中train、valid、test等数据集的位置以及模型训练信息。</p>
+<p>dateset.yaml内容如下：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 这里的path需要指向你项目中数据集的目录</span><br><span class="line">path: C:/Users/15875/Desktop/YOLOv8/birdsflying</span><br><span class="line"># 这里分别指向你训练、验证、测试的文件地址，只需要指向图片的文件夹即可。但是要注意图片和labels名称要对应</span><br><span class="line">train: train  # train images (relative to 'path') 128 images</span><br><span class="line">val: valid # val images (relative to 'path') 128 images</span><br><span class="line">test: valid # test images (optional)</span><br><span class="line"> </span><br><span class="line"># Classes</span><br><span class="line">names:</span><br><span class="line">  0: bird</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><p>使用如下命令指定数据集进行训练：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yolo train data='dataset.yaml'model=yolov8n.pt epochs=500 lr0=0.01</span><br></pre></td></tr></tbody></table></figure>
+<p>data=’’ 填写dataset.yaml所在路径；<br>model=yolov8n.pt 代表使用官方模型作为预训练模型（一般不自己从零开始训练模型，这是一件很难的事情）；<br>epochs=500 代表训练500轮，模型训练是一次一次迭代提升的过程，一般100到200轮就不会再有明显提升；<br>lr0=0.01 代表每次训练向最优值步进的跨度是0.01，这个参数可以暂时不了解。<br>训练完成的模型会保存在’users/你的用户名/train’文件夹下。<br>训练过程一般时间很长，具体时间视GPU强弱而定。</p>
+<p>如果想使用刚刚训练完成的模型可以使用预测命令，将model指向模型的路径：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yolo predict model=yolov8n source=0 show=true</span><br></pre></td></tr></tbody></table></figure>
                 
             </div>
             <hr/>
@@ -855,7 +864,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">11.7k</span>
+                        class="white-color">12.2k</span>
             
             
             
